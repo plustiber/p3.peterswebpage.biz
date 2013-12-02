@@ -1,0 +1,43 @@
+/**************************************************
+Peter Lustiber
+CSCI E-15 Dynamic Web Applications
+Project 3
+December 6, 2013 
+**************************************************/
+
+
+body {
+	width: 320px;
+}
+
+h1 {
+	text-align: center;
+}
+
+h3 {
+	text-align: justify;
+}
+
+.brown-square {
+	background-color:brown;
+	cursor:pointer;
+	width:40px;
+	height:40px;
+	float: left;
+}
+
+.tan-square {
+	background-color:tan;
+	cursor:pointer;
+	width:40px;
+	height:40px;
+	float: left;
+}
+
+.clear {
+	clear: both;
+}
+
+.queen {
+	width:100%;
+}
