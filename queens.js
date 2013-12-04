@@ -1,21 +1,23 @@
+var board;				// Array representing chess board
+var sizeOfBoard = 8;	// Number of rows and columns on the board
+
 /*	Determine when a given cell of the chess board has been clicked.
 	Each square of the board is contained in its own <div> and uniquely
 	identified with an id of the form '<row><col>'.
 */
 $( "div" ).click(function() {
-  var color = $( this ).css("background-color");
-  var row = parseInt(this.id.charAt(0));
-  var col = parseInt(this.id.charAt(1));
-  var y = this.className;
-  //alert( "The class of this square is " + y + " and the id is [" + row + "," + col + "].");
-  if (this.innerHTML == '')
-  	this.innerHTML = "<img src='queen.png' alt='queen' class='queen'>";
-  else
-  	this.innerHTML = '';
-})
+  var row = parseInt(this.id.charAt(0)) - 1;
+  var col = parseInt(this.id.charAt(1)) - 1;
 
-var board;				// Array representing chess board
-var sizeOfBoard = 8;	// Number of rows and columns on the board
+  if (this.innerHTML != '') {
+  	board[row][col] = 0;
+  	this.innerHTML = '';
+  } 
+  else if (isValidSquare(row, col, sizeOfBoard)) {
+  	board[row][col] = 1;
+  	this.innerHTML = "<img src='queen.png' alt='queen' class='queen'>";
+  }
+})
 
 /* 	Initialize each cell of the multi-dimensional array to 0
 	Each cell represents a square of the chess board.  If the
@@ -36,7 +38,7 @@ function init_board(size) {
 */
 function isValidRow(row, size) {
 	for (col = 0; col < size; col++) {
-		if (board[row,icol] == 1)
+		if (board[row][col] == 1)
 			return false;
 	}
 	return true;
@@ -47,7 +49,7 @@ function isValidRow(row, size) {
 */
 function isValidColumn(col, size) {
 	for (row = 0; row < size; row++) {
-		if (board[row,col] == 1)
+		if (board[row][col] == 1)
 			return false;
 	}
 	return true;
@@ -107,8 +109,10 @@ function isValidDiagonal(row, col, size) {
 	Return true if no other queen is present.
 */
 function isValidSquare(row, col, size) {
-	if (isValidRow(row, col, size) && isValidColumn(row, col, size) && isValidDiagonal(row, col, size) )
+	if (isValidRow(row, size) && isValidColumn(col, size) && isValidDiagonal(row, col, size) )
 		return true;
 	else
 		return false;
 }
+
+init_board(sizeOfBoard);
