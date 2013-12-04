@@ -4,17 +4,22 @@
 */
 $( "div" ).click(function() {
   var color = $( this ).css("background-color");
-  var x = this.id;
+  var row = parseInt(this.id.charAt(0));
+  var col = parseInt(this.id.charAt(1));
   var y = this.className;
-  alert( "The class of this square is " + y + " and the id is " + x + ".");
-});
+  //alert( "The class of this square is " + y + " and the id is [" + row + "," + col + "].");
+  if (this.innerHTML == '')
+  	this.innerHTML = "<img src='queen.png' alt='queen' class='queen'>";
+  else
+  	this.innerHTML = '';
+})
 
 var board;				// Array representing chess board
 var sizeOfBoard = 8;	// Number of rows and columns on the board
 
 /* 	Initialize each cell of the multi-dimensional array to 0
 	Each cell represents a square of the chess board.  If the
-	cell has a queen on the square the array's value is 1
+	cell has a queen on the square the array's value is 1.
 */
 function init_board(size) {
 	board = new Array(size);
@@ -27,7 +32,7 @@ function init_board(size) {
 }
 
 /*	Determine if a cell in the specified row contains a queen.
-	Return true if no queen is present
+	Return true if no queen is present.
 */
 function isValidRow(row, size) {
 	for (col = 0; col < size; col++) {
@@ -38,7 +43,7 @@ function isValidRow(row, size) {
 }
 
 /*	Determine if a cell in the specified column contains a queen.
-	Return true if no queen is present
+	Return true if no queen is present.
 */
 function isValidColumn(col, size) {
 	for (row = 0; row < size; row++) {
@@ -49,7 +54,7 @@ function isValidColumn(col, size) {
 }
 
 /*	Determine if a cell on either diagonal contains a queen.
-	Return true if no queen is present
+	Return true if no queen is present.
 */
 function isValidDiagonal(row, col, size) {
 	var irow, icol;
@@ -95,4 +100,15 @@ function isValidDiagonal(row, col, size) {
 		}
 
 	return true;
+}
+
+/*	Determine if the specified cell is a valid square to place queen.
+	The cell must have no other queen in its row, column or diagonal.
+	Return true if no other queen is present.
+*/
+function isValidSquare(row, col, size) {
+	if (isValidRow(row, col, size) && isValidColumn(row, col, size) && isValidDiagonal(row, col, size) )
+		return true;
+	else
+		return false;
 }
