@@ -1,5 +1,6 @@
-var board;				// Array representing chess board
+var board;				// 2-D Array representing location of queens on the board
 var sizeOfBoard = 8;	// Number of rows and columns on the board
+var score; 				// Number of queens on the board
 
 /*	Determine when a given cell of the chess board has been clicked.
 	Each square of the board is contained in its own <div> and uniquely
@@ -11,13 +12,24 @@ $( "div" ).click(function() {
 
   if (this.innerHTML != '') {
   	board[row][col] = 0;
+  	score--;
   	this.innerHTML = '';
   } 
   else if (isValidSquare(row, col, sizeOfBoard)) {
   	board[row][col] = 1;
+  	score++;
   	this.innerHTML = "<img src='queen.png' alt='queen' class='queen'>";
   }
+  updateScore();
 })
+
+function updateScore() {
+//	$('#score').textContent = 'Score: ' + score;
+	if (score == 8)
+		document.getElementById('score').textContent = 'Congratulations You Won!!';
+	else
+		document.getElementById('score').textContent = 'Score: ' + score;
+}
 
 /* 	Initialize each cell of the multi-dimensional array to 0
 	Each cell represents a square of the chess board.  If the
@@ -31,6 +43,7 @@ function init_board(size) {
 			board[row][col] = 0;
 		}
 	}
+	score = 0;
 }
 
 /*	Determine if a cell in the specified row contains a queen.

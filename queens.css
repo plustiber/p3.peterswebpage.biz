@@ -14,19 +14,23 @@ h1 {
 	text-align: center;
 }
 
+h2 {
+	text-align: center;
+}
+
 h3 {
 	text-align: justify;
 }
 
-.brown-square {
-	background-color:brown;
+.black-square {
+	background-color:saddlebrown;
 	cursor:pointer;
 	width:40px;
 	height:40px;
 	float: left;
 }
 
-.tan-square {
+.white-square {
 	background-color:tan;
 	cursor:pointer;
 	width:40px;
