@@ -8,20 +8,22 @@ December 6, 2013
 ***************************************-->
 
 <html>
-	<!-- Identify the charset used, the page title and the css link -->
+	<!-- Identify the charset used, the page title, css link and jQuery API-->
 	<head>
 		<meta charset="UTF-8">
 		<title>CSCI E-15 Project 3</title>
 		<link rel="stylesheet" type="text/css" href="queens.css" media="screen" />
-
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 	</head>
 
+	<!-- Display an 8 x 8 chess board made-up of individual black and white squares
+		 Each square has a unique id (row,col) and it's color is identified by class-->
 	<body>
 		<h1>Eight Queens Problem</h1>
+
 		<h2 id = 'score'>Score: 0</h2>
 
+		<!-- Row 8 -->
 		<div class='white-square' id='81'></div>
 		<div class='black-square' id='82'></div>
 		<div class='white-square' id='83'></div>
@@ -31,6 +33,8 @@ December 6, 2013
 		<div class='white-square' id='87'></div>
 		<div class='black-square' id='88'></div>
 		<br class='clear'>
+
+		<!-- Row 7 -->
 		<div class='black-square' id='71'></div>
 		<div class='white-square' id='72'></div>
 		<div class='black-square' id='73'></div>
@@ -40,6 +44,8 @@ December 6, 2013
 		<div class='black-square' id='77'></div>
 		<div class='white-square' id='78'></div>
 		<br class='clear'>
+
+		<!-- Row 6 -->
 		<div class='white-square' id='61'></div>
 		<div class='black-square' id='62'></div>
 		<div class='white-square' id='63'></div>
@@ -49,6 +55,8 @@ December 6, 2013
 		<div class='white-square' id='67'></div>
 		<div class='black-square' id='68'></div>
 		<br class='clear'>
+
+		<!-- Row 5 -->
 		<div class='black-square' id='51'></div>
 		<div class='white-square' id='52'></div>
 		<div class='black-square' id='53'></div>
@@ -58,6 +66,8 @@ December 6, 2013
 		<div class='black-square' id='57'></div>
 		<div class='white-square' id='58'></div>
 		<br class='clear'>
+
+		<!-- Row 4 -->
 		<div class='white-square' id='41'></div>
 		<div class='black-square' id='42'></div>
 		<div class='white-square' id='43'></div>
@@ -67,6 +77,8 @@ December 6, 2013
 		<div class='white-square' id='47'></div>
 		<div class='black-square' id='48'></div>
 		<br class='clear'>
+
+		<!-- Row 3 -->
 		<div class='black-square' id='31'></div>
 		<div class='white-square' id='32'></div>
 		<div class='black-square' id='33'></div>
@@ -76,6 +88,8 @@ December 6, 2013
 		<div class='black-square' id='37'></div>
 		<div class='white-square' id='38'></div>
 		<br class='clear'>
+
+		<!-- Row 2 -->
 		<div class='white-square' id='21'></div>
 		<div class='black-square' id='22'></div>
 		<div class='white-square' id='23'></div>
@@ -85,6 +99,8 @@ December 6, 2013
 		<div class='white-square' id='27'></div>
 		<div class='black-square' id='28'></div>
 		<br class='clear'>
+
+		<!-- Row 1 -->
 		<div class='black-square' id='11'></div>
 		<div class='white-square' id='12'></div>
 		<div class='black-square' id='13'></div>
@@ -95,10 +111,12 @@ December 6, 2013
 		<div class='white-square' id='18'></div>
 		<br class='clear'>
 
-		<h3>The object is to place <i>eight</i> queens on the chess board so that no two queens attack each other - i.e., no two queens can be in the same row, column or diagonal.</h3>
+		<!-- Display instructions on how to play the game -->
+		<h4>The object is to place <i>eight</i> queens on the chess board so that no two queens attack each other - i.e., no two queens can be in the same row, column or diagonal.</h3>
 
-		<h3>To place a queen on the board, just click the square.</h3>
+		<h4>To place a queen on the board, just click the square.  Click again to remove.  Note, only valid moves are allowed.</h3>
 
+		<!-- Javascipt code used to determine valid moves-->
 		<script src="queens.js"></script>
 	</body>
 </html>

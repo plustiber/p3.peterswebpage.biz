@@ -6,42 +6,49 @@ December 6, 2013
 **************************************************/
 
 
+/* Set body of page to the width of the chess board */
 body {
 	width: 320px;
 }
 
+/* Page Title */
 h1 {
 	text-align: center;
 }
 
+/* Score Display */
 h2 {
 	text-align: center;
 }
 
-h3 {
+/* Game Instructions */
+h4 {
 	text-align: justify;
 }
 
-.black-square {
-	background-color:saddlebrown;
+/* Set the size of the squares to 40x40, align on a row, and cursor pointer */
+div {
 	cursor:pointer;
 	width:40px;
 	height:40px;
 	float: left;
+}
+
+/* Use black/white class to set color of squares */
+.black-square {
+	background-color:saddlebrown;
 }
 
 .white-square {
 	background-color:tan;
-	cursor:pointer;
-	width:40px;
-	height:40px;
-	float: left;
 }
 
+/* Use clear in <br> so next row begins at far left of element */
 .clear {
 	clear: both;
 }
 
+/* Use 100% width to resize queen image to fit size of square */
 .queen {
 	width:100%;
 }

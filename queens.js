@@ -1,35 +1,41 @@
+/**************************************************
+Peter Lustiber
+CSCI E-15 Dynamic Web Applications
+Project 3
+December 6, 2013 
+**************************************************/
+
 var board;				// 2-D Array representing location of queens on the board
 var sizeOfBoard = 8;	// Number of rows and columns on the board
-var score; 				// Number of queens on the board
+var score; 				// Number of queens currently on the board
 
 /*	Determine when a given cell of the chess board has been clicked.
+	If a "valid" square has been clicked, place a queen on the square. 
 	Each square of the board is contained in its own <div> and uniquely
 	identified with an id of the form '<row><col>'.
 */
 $( "div" ).click(function() {
-  var row = parseInt(this.id.charAt(0)) - 1;
-  var col = parseInt(this.id.charAt(1)) - 1;
 
-  if (this.innerHTML != '') {
-  	board[row][col] = 0;
-  	score--;
-  	this.innerHTML = '';
-  } 
-  else if (isValidSquare(row, col, sizeOfBoard)) {
-  	board[row][col] = 1;
-  	score++;
-  	this.innerHTML = "<img src='queen.png' alt='queen' class='queen'>";
-  }
-  updateScore();
+	// Get the row and column from the div id
+	var row = parseInt(this.id.charAt(0)) - 1;
+	var col = parseInt(this.id.charAt(1)) - 1;
+
+	// If the square has a queen, remove it from array, decrement score and clear <div>
+	if (this.innerHTML != '') {
+		board[row][col] = 0;
+		score--;
+		this.innerHTML = '';
+	} 
+	//Otherwise, see if it is a valid square and set array cell, increment score and display queen
+	else if (isValidSquare(row, col, sizeOfBoard)) {
+		board[row][col] = 1;
+		score++;
+		this.innerHTML = "<img src='queen.png' alt='queen' class='queen'>";
+	}
+
+	// Update the score
+	updateScore();
 })
-
-function updateScore() {
-//	$('#score').textContent = 'Score: ' + score;
-	if (score == 8)
-		document.getElementById('score').textContent = 'Congratulations You Won!!';
-	else
-		document.getElementById('score').textContent = 'Score: ' + score;
-}
 
 /* 	Initialize each cell of the multi-dimensional array to 0
 	Each cell represents a square of the chess board.  If the
@@ -44,6 +50,17 @@ function init_board(size) {
 		}
 	}
 	score = 0;
+}
+
+/*	Update the score on the page */
+
+function updateScore() {
+	// If there are 8 queens, you win!
+	if (score == 8)
+		$('#score').text("Congratulations You Won");
+	//Otherwise, display score (0 - 7)
+	else
+		$('#score').text("Score: " + score);
 }
 
 /*	Determine if a cell in the specified row contains a queen.
@@ -68,12 +85,14 @@ function isValidColumn(col, size) {
 	return true;
 }
 
-/*	Determine if a cell on either diagonal contains a queen.
-	Return true if no queen is present.
+/*	Determine if a cell on one of the four diagonal elements contain a queen.
+	Return true if no queen is present, otherwise return false.
 */
 function isValidDiagonal(row, col, size) {
 	var irow, icol;
 
+	// Check quadrant I (upper right)to see if a queen is present
+	// If a queen is found, return false
 	irow = row;
 	icol = col;
 	while (irow < size && icol < size) 
@@ -84,16 +103,8 @@ function isValidDiagonal(row, col, size) {
 			icol++;
 		}
 
-	irow = row;
-	icol = col;
-	while (irow >= 0 && icol >= 0) 
-		if (board[irow][icol] == 1)
-			return false;
-		else {
-			irow--;
-			icol--;
-		}
-
+	// Otherwise continue checking quadrant II (upper left) for a queen
+	// If a queen is found, return false
 	irow = row;
 	icol = col;
 	while (irow < size && icol >= 0) 
@@ -104,6 +115,20 @@ function isValidDiagonal(row, col, size) {
 			icol--;
 		}
 
+	// Otherwise continue checking quadrant III (lower left) for a queen
+	// If a queen is found, return false
+	irow = row;
+	icol = col;
+	while (irow >= 0 && icol >= 0) 
+		if (board[irow][icol] == 1)
+			return false;
+		else {
+			irow--;
+			icol--;
+		}
+
+	// Finally, check quadrant IV (lower right) for a queen
+	// If a queen is found, return false
 	irow = row;
 	icol = col;
 	while (irow >= 0 && icol < size) 
@@ -114,6 +139,7 @@ function isValidDiagonal(row, col, size) {
 			icol++;
 		}
 
+	// If no queen is found on any of the four diagonal elemets, return true
 	return true;
 }
 
@@ -128,4 +154,5 @@ function isValidSquare(row, col, size) {
 		return false;
 }
 
+// Start the game by initializing the board and begin listening for a square to be clicked
 init_board(sizeOfBoard);
