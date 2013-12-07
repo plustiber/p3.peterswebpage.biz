@@ -52,3 +52,9 @@ div {
 .queen {
 	width:100%;
 }
+
+/* Set the game notes to be bold 13pt */
+.notes {
+	font-size: 13px;
+	font-weight: bold;
+}
