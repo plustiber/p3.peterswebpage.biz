@@ -37,7 +37,7 @@ $( "div" ).click(function() {
 	updateScore();
 })
 
-/* 	Initialize each cell of the multi-dimensional array to 0
+/* 	Create nxn multi-dimensional array and initialize each cell to 0
 	Each cell represents a square of the chess board.  If the
 	cell has a queen on the square the array's value is 1.
 */
@@ -75,14 +75,6 @@ function updateScore() {
 	else
 		$('#score').text("Score: " + score);
 }
-
-/*  Double click anywhere on the chess board will reset the
-	board and initialize the score to 0
-*/
-$( "div" ).dblclick(function() {
-	clear_board(sizeOfBoard);
-	updateScore();
-})
 
 /*	Determine if a cell in the specified row contains a queen.
 	Return true if no queen is present.
@@ -174,6 +166,14 @@ function isValidSquare(row, col, size) {
 	else
 		return false;
 }
+
+/*  Double click anywhere on the chess board will reset the
+	board and initialize the score to 0
+*/
+$( "div" ).dblclick(function() {
+	clear_board(sizeOfBoard);
+	updateScore();
+})
 
 // Start the game by initializing the board and begin listening for a square to be clicked
 init_board(sizeOfBoard);
