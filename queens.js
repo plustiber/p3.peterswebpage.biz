@@ -9,10 +9,10 @@ var board;				// 2-D Array representing location of queens on the board
 var sizeOfBoard = 8;	// Number of rows and columns on the board
 var score; 				// Number of queens currently on the board
 
-/*	Determine when a given cell of the chess board has been clicked.
-	If a "valid" square has been clicked, place a queen on the square. 
-	Each square of the board is contained in its own <div> and uniquely
-	identified with an id of the form '<row><col>'.
+/*	Determine when a given square of the chess board has been clicked.
+	If a "valid" square has been clicked and no queen is present, place a
+	queen on the square.  Each square of the board is contained in its own
+	<div> and uniquely identified with an id of the form '<row><col>'.
 */
 $( "div" ).click(function() {
 
@@ -52,16 +52,37 @@ function init_board(size) {
 	score = 0;
 }
 
+function clear_board(size) {
+	var id;
+
+	for (row = 0; row < size; row++) {
+		for (col = 0; col < size; col++){
+			board[row][col] = 0;
+			id = (10*(row+1) + (col+1)).toString();
+			document.getElementById(id).innerHTML = '';
+		}
+	}
+	score = 0;
+}
+
 /*	Update the score on the page */
 
 function updateScore() {
 	// If there are 8 queens, you win!
 	if (score == 8)
-		$('#score').text("Congratulations You Won");
+		$('#score').text("Congratulations You Won!");
 	//Otherwise, display score (0 - 7)
 	else
 		$('#score').text("Score: " + score);
 }
+
+/*  Double click anywhere on the chess board will reset the
+	board and initialize the score to 0
+*/
+$( "div" ).dblclick(function() {
+	clear_board(sizeOfBoard);
+	updateScore();
+})
 
 /*	Determine if a cell in the specified row contains a queen.
 	Return true if no queen is present.
