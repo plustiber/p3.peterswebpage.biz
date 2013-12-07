@@ -48,13 +48,13 @@ div {
 	clear: both;
 }
 
-/* Use 100% width to resize queen image to fit size of square */
-.queen {
-	width:100%;
-}
-
 /* Set the game notes to be bold 13pt */
 .notes {
 	font-size: 13px;
 	font-weight: bold;
+}
+
+/* Use 100% width to resize queen image to fit size of square */
+.queen {
+	width:100%;
 }
